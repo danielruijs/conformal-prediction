@@ -1,7 +1,36 @@
 [project]
 name = "conformal-prediction"
 version = "0.1.0"
-description = "Add your description here"
+description = "Conformal prediction"
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = []
+requires-python = "==3.13.*"
+dependencies = [
+    "numpy>=2.5.3",
+    "matplotlib>=3.11.2",
+    "jupyter>=1.1.1",
+    "ipykernel>=7.3.0",
+    "scipy>=1.15.0",
+]
+
+[project.optional-dependencies]
+cpu = [
+    "torch>=2.11.0",
+    "torchvision>=0.26.0",
+]
+gpu = [
+    "torch>=2.11.0",
+    "torchvision>=0.26.0",
+]
+
+[tool.uv.sources]
+torch = [
+    { extra = "gpu", index = "pytorch-cu128" },
+]
+torchvision = [
+    { extra = "gpu", index = "pytorch-cu128" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
