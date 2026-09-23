@@ -52,7 +52,7 @@ It is important to understand what this guarantee does and does not promise:
 
 Following Chapter 3 of [Angelopoulos & Bates (2021)](https://arxiv.org/pdf/2107.07511), we evaluate practical properties beyond basic marginal coverage:
 
-1. **Adaptivity (Section 3.1):** Marginal coverage only guarantees $1 - \alpha$ *on average*. We check **Feature-Stratified Coverage (FSC)** to ensure hard classes aren't secretly undercovered, and **Size-Stratified Coverage (SSC)** to verify reliability when the model outputs small vs. large prediction sets.
+1. **Adaptivity (Section 3.1):** Marginal coverage only guarantees $1 - \alpha$ _on average_. We check **Feature-Stratified Coverage (FSC)** to ensure hard classes aren't secretly undercovered, and **Size-Stratified Coverage (SSC)** to verify reliability when the model outputs small vs. large prediction sets.
 2. **Correctness Checks (Section 3.3):** By precomputing scores once on all held-out data, we can repeatedly re-split that pool into hundreds of random (calibration + test) combinations in seconds. This verifies that empirical coverage matches theoretical moments across repeated trials, confirming there are no implementation bugs.
 
 ## Installation & Environment Setup
@@ -76,9 +76,13 @@ uv sync --extra cpu
 ```
 conformal-prediction/
 ├── image_classification/
-│   └── svhn.ipynb             — split CP with LAC score on Street View House Numbers (SVHN)
+│   └── svhn.ipynb          — split CP with LAC score on Street View House Numbers (SVHN)
+└── object_detection/
+    ├── helpers.py          — Pascal VOC label parsing, greedy IoU matching & geometry utilities
+    └── voc_2007.ipynb      — Two-Step CP (ClassThr label sets & Box-Mult adaptive box intervals) on Pascal VOC 2007 with YOLO26
 ```
 
 ## Further reading
 
-- Anastasios N. Angelopoulos & Stephen Bates, [A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification](https://arxiv.org/pdf/2107.07511) (arXiv:2107.07511)
+- Anastasios N. Angelopoulos & Stephen Bates, [A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification](https://arxiv.org/abs/2107.07511) (arXiv:2107.07511)
+- Alexander Timans, Christoph-Nikolas Straehle, Kaspar Sakmann, & Eric Nalisnick, [Adaptive Bounding Box Uncertainties via Two-Step Conformal Prediction](https://arxiv.org/abs/2403.07263) (arXiv:2403.07263)
